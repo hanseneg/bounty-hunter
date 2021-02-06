@@ -39,4 +39,3 @@ function Bounty(props) {
 }
 
 export default Bounty
-
