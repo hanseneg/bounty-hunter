@@ -49,8 +49,8 @@ function App() {
                 <Bounty 
                     {...bounty} 
                     key={bounty._id}
-                deleteBounty={deleteBounty}
-                editBounty={editBounty}/>) 
+                    deleteBounty={deleteBounty}
+                    editBounty={editBounty}/>) 
             }
         </div>
     )

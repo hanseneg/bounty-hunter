@@ -11,6 +11,7 @@ function Bounty(props) {
                 <>
                     <h1>{`${firstName} ${lastName}`}</h1>
                     <h2>{bountyAmount}</h2>
+                    <h2>{type}</h2>
                     <h2>{living}</h2>
                     {/* anonymous function so onclick calls anon func then that calls delete func
                     without it, it would call function immediately 
