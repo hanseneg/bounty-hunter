@@ -39,19 +39,30 @@ export default function AddBountyForm(props) {
                     onChange={handleChange} 
                     placeholder='Last Name'>
                 </input>
-                <input 
-                    type='checkbox' 
-                    name='living' 
-                    checked={inputs.living} 
-                    onChange={handleChange} >
-                </input>
-                <label for='living' >Alive?</label>
+                <br></br>
+                <br></br>
+                <p>Dead or Alive</p>
+                <div className='switch'>
+                    <input 
+                        id='switch-1'
+                        className='switch-input'
+                        type='checkbox' 
+                        name='living' 
+                        checked={inputs.living} 
+                        onChange={handleChange} >
+                    </input>
+                    <label className='switch-label' for='switch-1' ></label>
+                </div>
+                <br></br>
+                <p>Bounty Amount in Imperial Credits</p>
                 <input 
                     type='number' 
                     name='bountyAmount' 
                     value={inputs.bountyAmount} 
                     onChange={handleChange} >
                 </input>
+                <br></br>
+                <p>Type</p>
                 <select name='type' 
                         value={inputs.type} 
                         onChange={handleChange}>
@@ -60,6 +71,8 @@ export default function AddBountyForm(props) {
                     <option value='Jedi'>Jedi</option>
                     <option value='Gray'>Gray</option>
                 </select>
+                <br></br>
+                <br></br>
                 <button>{props.btnText}</button>
             </form>
         </div>

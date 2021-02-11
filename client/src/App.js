@@ -47,9 +47,11 @@ function App() {
                 submit={addBounty} 
                 btnText='Add Bounty'
             />
-            <h1>See the List of Bounties and Edit or Delete Them</h1>
+            <h1>See the List of Bounties</h1>
+            <h1>and Edit or Delete Them</h1>
             {bounties.map(bounty => 
                 <Bounty 
+                    className='bounty'
                     {...bounty} 
                     key={bounty._id}
                     deleteBounty={deleteBounty}

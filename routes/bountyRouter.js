@@ -4,12 +4,12 @@ const { v4: uuid }= require('uuid')
 
 //fake data
 const bounties = [
-    {firstName: 'mike', lastName: 'james', living: true, bountyAmount: 400, type: 'Sith', _id: uuid()},
-    {firstName: 'steve', lastName: 'james', living: true, bountyAmount: 400, type: 'Sith', _id: uuid()},
-    {firstName: 'jon', lastName: 'james', living: true, bountyAmount: 400, type: 'Sith', _id: uuid()},
-    {firstName: 'dylan', lastName: 'james', living: true, bountyAmount: 400, type: 'Sith', _id: uuid()},
-    {firstName: 'kyle', lastName: 'james', living: true, bountyAmount: 400, type: 'Sith', _id: uuid()},
-    {firstName: 'sam', lastName: 'james', living: true, bountyAmount: 400, type: 'Sith', _id: uuid()}
+    {firstName: 'Mike', lastName: 'James', living: true, bountyAmount: 350, type: 'Sith', _id: uuid()},
+    {firstName: 'Steve', lastName: 'James', living: true, bountyAmount: 250, type: 'Jedi', _id: uuid()},
+    {firstName: 'Jon', lastName: 'James', living: true, bountyAmount: 200, type: 'Jedi', _id: uuid()},
+    {firstName: 'Dylan', lastName: 'James', living: true, bountyAmount: 1000, type: 'Sith', _id: uuid()},
+    {firstName: 'Kyle', lastName: 'James', living: true, bountyAmount: 700, type: 'Sith', _id: uuid()},
+    {firstName: 'Sam', lastName: 'James', living: true, bountyAmount: 450, type: 'Jedi', _id: uuid()}
 ]
 
 /* bountyRouter.get('/', (req, res) => {
