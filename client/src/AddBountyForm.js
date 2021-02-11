@@ -1,7 +1,11 @@
 import React, {useState} from 'react'
 
 export default function AddBountyForm(props) {
-    const initInputs = {firstName: props.firstName || '', lastName: props.lastName || '', living: props.living === undefined && true, bountyAmount: props.bountyAmount || 0, type: props.type || ''}
+    const initInputs = {firstName: props.firstName || '', 
+                        lastName: props.lastName || '', 
+                        living: props.living === undefined && true, 
+                        bountyAmount: props.bountyAmount || 0, 
+                        type: props.type || ''}
     const [inputs, setInputs] = useState(initInputs)
 
     function handleChange(e){
@@ -21,13 +25,40 @@ export default function AddBountyForm(props) {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <input type='text' name='firstName' value={inputs.firstName} onChange={handleChange} placeholder='First Name'></input>
-                <input type='text' name='lastName' value={inputs.lastName} onChange={handleChange} placeholder='Last Name'></input>
-                <input type='checkbox' name='living' checked={inputs.living} onChange={handleChange} ></input>
-                <input type='number' name='bountyAmount' value={inputs.bountyAmount} onChange={handleChange} ></input>
-                <select name='type' value={inputs.type} onChange={handleChange}>
-                    <option value='sith'>Sith</option>
-                    <option value='jedi'>Jedi</option>
+                <input 
+                    type='text' 
+                    name='firstName' 
+                    value={inputs.firstName} 
+                    onChange={handleChange} 
+                    placeholder='First Name'>
+                </input>
+                <input 
+                    type='text' 
+                    name='lastName' 
+                    value={inputs.lastName} 
+                    onChange={handleChange} 
+                    placeholder='Last Name'>
+                </input>
+                <input 
+                    type='checkbox' 
+                    name='living' 
+                    checked={inputs.living} 
+                    onChange={handleChange} >
+                </input>
+                <label for='living' >Alive?</label>
+                <input 
+                    type='number' 
+                    name='bountyAmount' 
+                    value={inputs.bountyAmount} 
+                    onChange={handleChange} >
+                </input>
+                <select name='type' 
+                        value={inputs.type} 
+                        onChange={handleChange}>
+                    <option>---Choose one of the 3 below----</option>
+                    <option value='Sith'>Sith</option>
+                    <option value='Jedi'>Jedi</option>
+                    <option value='Gray'>Gray</option>
                 </select>
                 <button>{props.btnText}</button>
             </form>

@@ -1,0 +1,13 @@
+body {
+    text-align: center;  
+    background-image: url(https://miro.medium.com/max/1200/1*DWpYqaMLms7g3DAAB0389Q.jpeg); 
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #e5e7e7;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+h1 {
+    font-size: 60px;
+    
+}

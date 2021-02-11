@@ -3,16 +3,16 @@ import AddBountyForm from './AddBountyForm'
 
 function Bounty(props) {
     console.log(props)
-    const { firstName, lastName, _id, bountyAmount, living, type} = props
+    const {firstName, lastName, _id, bountyAmount, living, type, editBounty} = props
     const [editToggle, setEditToggle] = useState(false)
     return (
         <div>
             { !editToggle ?
                 <>
-                    <h1>{`${firstName} ${lastName}`}</h1>
-                    <h2>{bountyAmount}</h2>
-                    <h2>{type}</h2>
-                    <h2>{living}</h2>
+                    <h2>{`${firstName} ${lastName}`}</h2>
+                    <h3>{bountyAmount}</h3>
+                    <h3>{type}</h3>
+                    {living ? <p style={{color: "green"}}>Alive</p> : <p style={{color: "red"}}>Dead</p>}
                     {/* anonymous function so onclick calls anon func then that calls delete func
                     without it, it would call function immediately 
                     id is passed in so button knows which to delete*/}
@@ -30,7 +30,8 @@ function Bounty(props) {
                         type={type}
                         _id={_id}
                         btnText='Submit Edit'
-                        submit={props.editBounty}
+                        submit={editBounty/* , () => setEditToggle(prevToggle => !prevToggle) */}
+                        /* submit={() => setEditToggle(false)} */
                     />
                     <button onClick={() => setEditToggle(prevToggle => !prevToggle)}>Close</button>
                 </>

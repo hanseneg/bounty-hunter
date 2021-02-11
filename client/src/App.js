@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import Bounty from './Bounty'
 import AddBountyForm from './AddBountyForm'
+import './App.css'
 
 function App() {
     const [bounties, setBounties] = useState([])
@@ -41,10 +42,12 @@ function App() {
 
     return (
         <div>
+            <h1>Add a New Bounty</h1>
             <AddBountyForm 
                 submit={addBounty} 
                 btnText='Add Bounty'
             />
+            <h1>See the List of Bounties and Edit or Delete Them</h1>
             {bounties.map(bounty => 
                 <Bounty 
                     {...bounty} 
