@@ -13,7 +13,7 @@ function Bounty(props) {
                     <h2>{`${firstName} ${lastName}`}</h2>
                     {bountyAmount == 1 ? <h3>{bountyAmount} Credit</h3> : <h3>{bountyAmount} Credits</h3>}
                     <h3>{type}</h3>
-                    {living ? <h3 style={{color: "green"}}>Alive</h3> : <h3 style={{color: "red"}}>Dead</h3>}
+                    {living ? <h3 style={{color: 'green'}}>Alive</h3> : <h3 style={{color: 'red'}}>Dead</h3>}
                     {/* anonymous function so onclick calls anon func then that calls delete func
                     without it, it would call function immediately 
                     id is passed in so button knows which to delete*/}

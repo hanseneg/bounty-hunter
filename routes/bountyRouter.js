@@ -1,16 +1,19 @@
 const express = require('express')
 const bountyRouter = express.Router()
-const { v4: uuid }= require('uuid')
+const Bounty = require('../models/bounty.js')
+
+//gives fake data ids
+/* const { v4: uuid }= require('uuid') */
 
 //fake data
-const bounties = [
+/* const bounties = [
     {firstName: 'Mike', lastName: 'James', living: true, bountyAmount: 350, type: 'Sith', _id: uuid()},
     {firstName: 'Steve', lastName: 'James', living: true, bountyAmount: 250, type: 'Jedi', _id: uuid()},
     {firstName: 'Jon', lastName: 'James', living: true, bountyAmount: 200, type: 'Jedi', _id: uuid()},
     {firstName: 'Dylan', lastName: 'James', living: true, bountyAmount: 1000, type: 'Sith', _id: uuid()},
     {firstName: 'Kyle', lastName: 'James', living: true, bountyAmount: 700, type: 'Sith', _id: uuid()},
     {firstName: 'Sam', lastName: 'James', living: true, bountyAmount: 450, type: 'Jedi', _id: uuid()}
-]
+] */
 
 /* bountyRouter.get('/', (req, res) => {
     res.send(bounty)
@@ -22,17 +25,32 @@ bountyRouter.post('/', (req, res) => {
     res.send(`Successfully added ${newBounty.firstName} to the data base.`)
 }) */
 
-//get all
-bountyRouter.get('/', (req, res) => {
-    res.send(bounties)
+//get all using mongoose method
+bountyRouter.get('/', (req, res, next) => {
+    Bounty.find((err, bounties) => {
+        if(err){
+            res.status(500)
+            return next(err)
+        }
+        return res.status(200).send(bounties)
+    })
 })
 
 //post a new bounty
-bountyRouter.post('/', (req, res) => {
-    const newBounty = req.body
+bountyRouter.post('/', (req, res, next) => {
+    const newBounty = new Bounty(req.body)
+    newBounty.save((err, savedBounty) => {
+        if(err){
+            res.status(500)
+            return next(err)
+        }
+        return res.status(201).send(savedBounty)
+    })
+
+    /* const newBounty = req.body
     newBounty._id = uuid()
     bounties.push(newBounty)
-    res.send(newBounty)
+    res.send(newBounty) */
 })
 
 //delete bounty
