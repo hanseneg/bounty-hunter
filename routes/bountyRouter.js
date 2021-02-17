@@ -25,6 +25,12 @@ bountyRouter.post('/', (req, res) => {
     res.send(`Successfully added ${newBounty.firstName} to the data base.`)
 }) */
 
+//get all
+/* bountyRouter.get('/', (req, res) => {
+    res.status(200)
+    res.send(bounties)
+}) */
+
 //get all using mongoose method
 bountyRouter.get('/', (req, res, next) => {
     Bounty.find((err, bounties) => {
@@ -53,21 +59,41 @@ bountyRouter.post('/', (req, res, next) => {
     res.send(newBounty) */
 })
 
-//delete bounty
-bountyRouter.delete('/:bountyId', (req, res) => {
-    const bountyId = req.params.bountyId
+//delete 1 bounty
+bountyRouter.delete('/:bountyId', (req, res, next) => {
+    Bounty.findByIdAndDelete({ _id: req.params.bountyId}, (err, deletedeItem) => {
+        if(err){
+            res.status(500)
+            return next(err)
+        }
+        return res.status(200).send(`Successfully deleted item ${deletedeItem.firstName & deletedeItem.lastName} from the database.`)
+    })
+    /* const bountyId = req.params.bountyId
     const bountyIndex = bounties.findIndex(bounty => bounty._id === bountyId)
     bounties.splice(bountyIndex, 1)
-    res.send('Successfully deleted the bounty!')
+    res.send('Successfully deleted the bounty!') */
 })
 
 //update bounty
-bountyRouter.put('/:bountyId', (req, res) => {
-    const bountyId = req.params.bountyId
+bountyRouter.put('/:bountyId', (req, res, next) => {
+    Bounty.findOneAndUpdate(
+        {_id: req.params.bountyId}, //find this one to update, same as delete
+        req.body, //update object with this data
+        {new: true}, //send back the updated version
+        (err, updatedBounty) => {
+            if (err){
+                res.status(500)
+                return next(err)
+            }
+            return res.status(201).send(updatedBounty)
+        }
+    )
+
+    /* const bountyId = req.params.bountyId
     const updatedObject = req.body
     const bountyIndex = bounties.findIndex(bounty => bounty._id === bountyId)
     const updatedBounty = Object.assign(bounties[bountyIndex], updatedObject)
-    res.send(updatedBounty)
+    res.send(updatedBounty) */
 })
     
 
