@@ -15,21 +15,6 @@ const Bounty = require('../models/bounty.js')
     {firstName: 'Sam', lastName: 'James', living: true, bountyAmount: 450, type: 'Jedi', _id: uuid()}
 ] */
 
-/* bountyRouter.get('/', (req, res) => {
-    res.send(bounty)
-})
-bountyRouter.post('/', (req, res) => {
-    const newBounty = req.body
-    newBounty._id = uuid()
-    bounty.push(newBounty)
-    res.send(`Successfully added ${newBounty.firstName} to the data base.`)
-}) */
-
-//get all
-/* bountyRouter.get('/', (req, res) => {
-    res.status(200)
-    res.send(bounties)
-}) */
 
 //get all using mongoose method
 bountyRouter.get('/', (req, res, next) => {
@@ -40,6 +25,9 @@ bountyRouter.get('/', (req, res, next) => {
         }
         return res.status(200).send(bounties)
     })
+
+    /* res.status(200)
+    res.send(bounties) */
 })
 
 //post a new bounty
@@ -61,12 +49,14 @@ bountyRouter.post('/', (req, res, next) => {
 
 //delete 1 bounty
 bountyRouter.delete('/:bountyId', (req, res, next) => {
-    Bounty.findByIdAndDelete({ _id: req.params.bountyId}, (err, deletedeItem) => {
+    Bounty.findByIdAndDelete({ _id: req.params.bountyId}, (err, deletedBounty) => {
         if(err){
             res.status(500)
             return next(err)
         }
-        return res.status(200).send(`Successfully deleted item ${deletedeItem.firstName & deletedeItem.lastName} from the database.`)
+        return res.status(200).send(
+            `Successfully deleted item ${deletedBounty.firstName + deletedBounty.lastName} from the database.`
+        )
     })
     /* const bountyId = req.params.bountyId
     const bountyIndex = bounties.findIndex(bounty => bounty._id === bountyId)
@@ -81,7 +71,7 @@ bountyRouter.put('/:bountyId', (req, res, next) => {
         req.body, //update object with this data
         {new: true}, //send back the updated version
         (err, updatedBounty) => {
-            if (err){
+            if(err){
                 res.status(500)
                 return next(err)
             }
