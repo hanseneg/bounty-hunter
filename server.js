@@ -6,6 +6,8 @@ const mongoose = require('mongoose')
 //step 1 connecting to heroku
 const PORT = process.env.PORT || 8000
 
+const MONGODB_URI = 'mongodb+srv://hanseneg:bountyhunter@cluster0.nbyij.mongodb.net/bountiesdb?retryWrites=true&w=majority'
+
 //middleware for every request
 //looks for request body and turns it into req.body
 //fires on every request
@@ -15,7 +17,7 @@ app.use(morgan('dev'))
 
 //step 2 connect to heroku
 //connect to DB
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/bountiesdb',
+mongoose.connect(MONGODB_URI || 'mongodb://localhost:27017/bountiesdb',
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,
